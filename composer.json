@@ -4,7 +4,8 @@
     "autoload": {
         "psr-4": {
             "IUT\\Spotify\\": "src/",
-            "iutnc\\deefy\\actions\\": "actions/"
+            "iutnc\\deefy\\actions\\": "actions/",
+            "iutnc\\deefy\\dispatch\\": "dispatch/"
         }
     },
     "require": {}

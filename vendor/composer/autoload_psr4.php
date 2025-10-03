@@ -6,5 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'iutnc\\deefy\\dispatch\\' => array($baseDir . '/dispatch'),
     'iutnc\\deefy\\actions\\' => array($baseDir . '/actions'),
+    'IUT\\Spotify\\' => array($baseDir . '/src'),
 );
