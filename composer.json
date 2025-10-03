@@ -1,9 +1,9 @@
 {
-    "name": "iut/spotify",
+    "name": "iutnc/deefy",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "IUT\\Spotify\\": "src/"
+            "iutnc\\deefy\\actions\\": "actions/"
         }
     },
     "require": {}
