@@ -1,6 +1,6 @@
 <?php
 
-namespace IUT\Spotify;
+namespace iutnc\deefy;
 
 class InvalidPropertyNameException extends \Exception
 {

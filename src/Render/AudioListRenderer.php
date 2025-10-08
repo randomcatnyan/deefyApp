@@ -1,8 +1,8 @@
 <?php
 
-namespace IUT\Spotify\Render;
+namespace iutnc\deefy\render;
 
-use IUT\Spotify\Entity\AudioList;
+use iutnc\deefy\entity\AudioList;
 
 class AudioListRenderer implements RenderInterface
 {

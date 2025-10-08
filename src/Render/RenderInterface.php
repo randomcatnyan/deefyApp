@@ -1,6 +1,6 @@
 <?php
 
-namespace IUT\Spotify\Render;
+namespace iutnc\deefy\render;
 
 interface RenderInterface
 {

@@ -4,7 +4,10 @@
     "autoload": {
         "psr-4": {
             "iutnc\\deefy\\": "src/",
-            "iutnc\\deefy\\actions\\": "./src/actions/"
+            "iutnc\\deefy\\actions\\": "./src/actions/",
+            "iutnc\\deefy\\entity\\": "./src/entity/",
+            "iutnc\\deefy\\render\\": "./src/render/"
+
         }
     },
     "require": {}

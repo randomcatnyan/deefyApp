@@ -3,7 +3,7 @@
         'name' => 'iutnc/deefy',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '101c4f9728a0c578f20f8c0d84035fb9fed86da4',
+        'reference' => '85231746474f58e66323bc2faea6b1f3247a0b52',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'iutnc/deefy' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '101c4f9728a0c578f20f8c0d84035fb9fed86da4',
+            'reference' => '85231746474f58e66323bc2faea6b1f3247a0b52',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
