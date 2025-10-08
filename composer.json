@@ -3,7 +3,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "iutnc\\deefy\\": "src/"
+            "iutnc\\deefy\\": "src/",
+            "iutnc\\deefy\\actions\\": "./src/actions/"
         }
     },
     "require": {}

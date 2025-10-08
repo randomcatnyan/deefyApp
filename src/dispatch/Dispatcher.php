@@ -1,8 +1,8 @@
 <?php
-
 namespace iutnc\deefy\dispatch;
+require_once 'vendor/autoload.php';
 
-use iutnc\deefy\action\Action;
+use iutnc\deefy\actions\DefaultAction;
 
 class Dispatcher {
 
@@ -10,7 +10,7 @@ class Dispatcher {
 
     public function __construct(){
 
-        $this->action = $_GET['action'] ?: null;
+        $this->action = $_GET['action'] ?? null;
 
     }
 
@@ -26,7 +26,7 @@ class Dispatcher {
             default:
                 $q = new DefaultAction();
         }
-        $this->renderPage($q.execute());
+        $this->renderPage($q->execute());
     }
 
     public function renderPage(string $html): void{

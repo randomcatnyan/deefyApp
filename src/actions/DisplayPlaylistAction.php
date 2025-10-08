@@ -1,6 +1,6 @@
 <?php
-
-namespace iutnc\deefy\action;
+namespace iutnc\deefy\actions;
+require_once 'vendor/autoload.php';
 
 class DisplayPlaylistAction extends Action {
 
