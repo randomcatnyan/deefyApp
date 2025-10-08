@@ -2,13 +2,15 @@
 
 namespace iutnc\deefy\dispatch;
 
-class AddPlaylistAction extends Action {
+use iutnc\deefy\action\Action;
 
-    private ?string $action = null;
+class Dispatcher {
+
+    protected ?string $action = null;
 
     public function __construct(){
 
-        $this->action = $_GET[’action’];
+        $this->action = $_GET['action'] ?: null;
 
     }
 
