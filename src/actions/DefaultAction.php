@@ -5,7 +5,15 @@ require_once 'vendor/autoload.php';
 class DefaultAction extends Action {
 
     public function execute() : string{
-        return "yo";
+        return "
+        <p>Bienvenue !
+            <ul>
+                <li><a href='http://localhost:8080?action=playlist' >show playlist</a></li>
+                <li><a href='http://localhost:8080?action=add-playlist' >add playlist</a></li>
+                <li><a href='http://localhost:8080?action=add-track' >add track</a></li>
+            </ul>
+        </p>
+        ";
     }
 
 }

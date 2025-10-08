@@ -2,7 +2,11 @@
 namespace iutnc\deefy\dispatch;
 require_once 'vendor/autoload.php';
 
+use iutnc\deefy\actions\AddPlaylistAction;
+use iutnc\deefy\actions\AddPodcastTrackAction;
 use iutnc\deefy\actions\DefaultAction;
+use iutnc\deefy\actions\DisplayPlaylistAction;
+
 
 class Dispatcher {
 
@@ -19,10 +23,13 @@ class Dispatcher {
         switch($this->action) {
             case "playlist":
                 $q = new DisplayPlaylistAction();
+                break;
             case "add-playlist":
                 $q = new AddPlaylistAction();
+                break;
             case "add-track":
                 $q = new AddPodcastTrackAction();
+                break;
             default:
                 $q = new DefaultAction();
         }
