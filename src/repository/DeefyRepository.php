@@ -9,6 +9,8 @@ class DeefyRepository {
     private static array $config = [ ];
 
     private function __construct(array $conf) {
+        $conf = self::$config;
+        var_dump($conf);
         $this->pdo = new \PDO($conf['dsn'], $conf['user'], $conf['pass'], [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
     }
 
@@ -24,7 +26,7 @@ class DeefyRepository {
         if ($conf === false) {
             throw new \Exception("Error reading configuration file");
         }
-        self::$config = [ 'dsn'=> $conf['driver'] . ":" . $conf['host'] . ";dbname=" . $conf['database'],'user'=> $conf['username'],'pass'=> $conf['password'] ];
+        self::$config = [ 'dsn'=> $conf['driver'] . ":host=" . $conf['host'] . ";dbname=" . $conf['database'],'user'=> $conf['username'],'pass'=> $conf['password'] ];
     }
 
     public function findPlaylistById(int $id): Playlist {
