@@ -10,7 +10,6 @@ class DeefyRepository {
 
     private function __construct(array $conf) {
         $conf = self::$config;
-        var_dump($conf);
         $this->pdo = new \PDO($conf['dsn'], $conf['user'], $conf['pass'], [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
     }
 
@@ -40,8 +39,8 @@ class DeefyRepository {
     public function saveEmptyPlaylist(Playlist $pl): Playlist {
         $query = "INSERT INTO playlist (nom) VALUES (:nom)";
         $stmt = $this->pdo->prepare($query);
-        $stmt->execute(['nom' => $pk->nom]);
-        $pk->setID($this->pdo->lastInsertId());
+        $stmt->execute(['nom' => $pl->nom]);
+        $pl->setID($this->pdo->lastInsertId());
         return $pk;
     }
 
