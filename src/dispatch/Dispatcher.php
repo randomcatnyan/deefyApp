@@ -30,6 +30,8 @@ class Dispatcher {
             case "add-track":
                 $q = new AddPodcastTrackAction();
                 break;
+            case "display-playlist":
+                break;
             default:
                 $q = new DefaultAction();
         }

@@ -18,12 +18,15 @@ class AddPlaylistAction extends Action {
         } else {
             $r = "
             <form method='post' action='?action=add-playlist'>
-                <label for='name' >Playlist's name : </label>
-                <input type='text' id='name' name='name' placeholder='ma playlist' />
+                <label>
+                <p>Playlist's name : </p>
+                <input type='text' name='name' placeholder='cool playlist' />
+                </label>
                 <input type='submit' value='Send'/>
             </form>
             ";
         }
+
         return $r;
     }
 
