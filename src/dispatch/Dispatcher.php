@@ -6,6 +6,7 @@ use iutnc\deefy\actions\AddPlaylistAction;
 use iutnc\deefy\actions\AddPodcastTrackAction;
 use iutnc\deefy\actions\DefaultAction;
 use iutnc\deefy\actions\DisplayPlaylistAction;
+use iutnc\deefy\actions\AddUserAction;
 
 
 class Dispatcher {
@@ -21,7 +22,7 @@ class Dispatcher {
     public function run(): void{
         $q = null;
         switch($this->action) {
-            case "playlist":
+            case "display-playlist":
                 $q = new DisplayPlaylistAction();
                 break;
             case "add-playlist":
@@ -30,7 +31,8 @@ class Dispatcher {
             case "add-track":
                 $q = new AddPodcastTrackAction();
                 break;
-            case "display-playlist":
+            case "add-user":
+                $q = new AddUserAction();
                 break;
             default:
                 $q = new DefaultAction();
@@ -52,9 +54,9 @@ class Dispatcher {
             <body>
                 <div>
                     <p>
-                        <a href='../../index.php'>Accueil</a>
+                        <a href='../../index.php'>Home</a>
                         <a href='../../index.php?action=add-user'>Inscription</a>
-                        <a href='../../index.php?action=add-playlist'>Nouvelle playlist</a>
+                        <a href='../../index.php?action=add-playlist'>New playlist</a>
                     </p>
                 </div>
                 " . $html . "

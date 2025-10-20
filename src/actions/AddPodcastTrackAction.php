@@ -36,6 +36,11 @@ class AddPodcastTrackAction extends Action {
                 <input type='text' name='author' placeholder='cool dude' />
                 </label>
 
+                <label>
+                <p>Track's file :</p>
+                <input type='file' name='track_file' />
+                </label>
+
                 <input type='submit' value='Send'/>
             </form>
             ";
