@@ -29,11 +29,17 @@ class DeefyRepository {
     }
 
     public function findPlaylistById(int $id): Playlist {
-                return $this->pdo->prepare("SELECT * FROM `playlist` WHERE id=$id")->execute();
+        $query = "SELECT * FROM playlist WHERE id=$id";
+        $query = $this->pdo->prepare($query);
+        $query->execute();
+        return $query->fetch();
     }
 
     public function getAllPlaylists() {
-        return $this->pdo->prepare("SELECT * FROM `playlist` ")->execute();
+        $query = "SELECT * FROM playlist ";
+        $query = $this->pdo->prepare($query);
+        $query->execute();
+        return $query->fetchAll();
     }
 
     public function saveEmptyPlaylist(Playlist $pl): Playlist {

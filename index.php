@@ -10,3 +10,5 @@ session_start();
 
 $dispatcher = new Dispatcher();
 $dispatcher->run();
+
+var_dump(DeefyRepository::getInstance()->getAllPlaylists());

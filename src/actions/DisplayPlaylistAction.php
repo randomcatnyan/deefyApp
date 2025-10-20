@@ -6,7 +6,13 @@ class DisplayPlaylistAction extends Action {
 
     public function execute() : string{
 
-        $r = "";
+        $r = "Playlists enregistrees :<br /><br />";
+
+        if (isset($_GET["id"])) {
+
+        } else {
+
+        }
 
         return $r;
     }
