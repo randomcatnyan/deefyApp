@@ -6,3 +6,5 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions zip pdo_mysql
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+ENV TMPDIR="/root/src/audio/"

@@ -43,15 +43,22 @@ class Dispatcher {
         echo"
         <!DOCTYPE html>
         <html lang='en'>
-        <head>
-        <meta charset='UTF-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>deefy l'app</title>
-        </head>
-        <body>
-        " . $html . "
-        </body>
+            <head>
+                <meta charset='UTF-8'>
+                <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <title>deefy l'app</title>
+            </head>
+            <body>
+                <div>
+                    <p>
+                        <a href='../../index.php'>Accueil</a>
+                        <a href='../../index.php?action=add-user'>Inscription</a>
+                        <a href='../../index.php?action=add-playlist'>Nouvelle playlist</a>
+                    </p>
+                </div>
+                " . $html . "
+            </body>
         </html>
         ";
 
