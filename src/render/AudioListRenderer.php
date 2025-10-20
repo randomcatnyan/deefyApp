@@ -14,14 +14,14 @@ class AudioListRenderer implements RenderInterface
     {
         $tracksRender = '';
         foreach ($this->audioList->getTracks() as $track) {
-            $tracksRender .= $track->title;
+            $tracksRender = $tracksRender . $track->title . "<br />";
         }
         return sprintf(
-            '%s %s %s %s',
+            "Playlist %s :<br />track count : %s, duration : %s <br />%s",
             $this->audioList->getName(),
-            $tracksRender,
             $this->audioList->getTrackCount(),
-            $this->audioList->getDuration()
+            $this->audioList->getDuration(),
+            $tracksRender
         );
     }
 

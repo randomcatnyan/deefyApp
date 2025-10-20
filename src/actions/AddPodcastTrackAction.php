@@ -11,10 +11,12 @@ class AddPodcastTrackAction extends Action {
 
         $r="";
 
-        if (isset($_POST['name'])) {
+        if (isset($_POST['name']) and isset($_SESSION["playlists"][$_POST['pname']])) {
             $t = new PodcastTrack($_POST['name'], $_POST['author']);
-            // $pr = new AudioListRenderer($p);
-            $r = "<p>" . $tr->render() . "</p><a href='?action=add-track'>Ajouter encore une piste</a>";
+            $p = $_SESSION["playlists"][$_POST['pname']];
+            $p->addTracks($t);
+            $pr = new AudioListRenderer($p);
+            $r = "<p>" . $pr->render() . "</p><a href='?action=add-track'>Ajouter encore une piste</a>";
         } else {
             $r = "
             <form method='post' action='?action=add-track'>
