@@ -41,10 +41,16 @@ class DeefyRepository {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute(['nom' => $pl->nom]);
         $pl->setID($this->pdo->lastInsertId());
-        return $pk;
+        return $pl;
     }
 
-    public function saveTrack(AudioTrack $track) {}
+    public function saveTrack(AudioTrack $track) {
+        $query = "INSERT INTO track (titre) VALUES (:nom)";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(['nom' => $track->nom]);
+        $track->setID($this->pdo->lastInsertId());
+        return $track;
+    }
 
     public function addTrackToPlaylist(AudioTrack $track, Playlist $pl) {}
 

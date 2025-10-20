@@ -4,7 +4,7 @@ namespace iutnc\deefy\entity;
 
 class AudioList
 {
-    public int $id;
+    protected int $id;
     protected array $tracks = [];
     protected int $tracksCount = 0;
 
