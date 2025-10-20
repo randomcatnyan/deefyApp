@@ -2,6 +2,8 @@
 
 namespace iutnc\deefy\repository;
 
+use iutnc\deefy\entity\Playlist;
+
 class DeefyRepository {
 
     private \PDO $pdo;
@@ -31,8 +33,10 @@ class DeefyRepository {
     public function findPlaylistById(int $id): Playlist {
         $query = "SELECT * FROM playlist WHERE id=$id";
         $query = $this->pdo->prepare($query);
-        $query->execute();
-        return $query->fetch();
+        $result->execute();
+        $result = $query->fetch();
+        $r = new Playlist($query["nom"]);
+        return $r;
     }
 
     public function getAllPlaylists() {

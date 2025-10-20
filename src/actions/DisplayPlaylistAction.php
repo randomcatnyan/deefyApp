@@ -12,7 +12,9 @@ class DisplayPlaylistAction extends Action {
         $db = DeefyRepository::getInstance();
 
         if (isset($_GET["id"])) {
-            $r = $r . $this->render_line($db->findPlaylistById($_GET["id"]));
+            $p = $db->findPlaylistById($_GET["id"]);
+            $r = $r . $this->render_line($p);
+            var_dump($p);
         } else {
             $all_playlists = $db->getAllPlaylists();
             foreach ( $all_playlists as $l){
