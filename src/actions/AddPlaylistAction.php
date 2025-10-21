@@ -20,6 +20,9 @@ class AddPlaylistAction extends Action {
     }
 
     public function executePost() : string{
+
+        $db = DeefyRepository::getInstance();
+
         $playlist = new Playlist($_POST['name']);
         $_SESSION["playlists"][$_POST['name']] = $playlist;
         $playlistRenderer = new AudioListRenderer($playlist);

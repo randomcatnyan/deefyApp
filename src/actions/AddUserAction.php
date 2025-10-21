@@ -15,13 +15,16 @@ class AddUserAction extends Action {
 
             <label>
                 <p>Email : </p>
-                <input type='text' name='email' placeholder='me@mymail.com' />
+                <input type='email' name='email' placeholder='me@mymail.com' />
             </label>
 
             <label>
             <p>Age : </p>
-                <input type='text' name='age' />
+                <input type='number' name='age' min='0' max='200' />
             </label>
+
+            <br />
+            <br />
 
             <input type='submit' value='Send'/>
         </form>
@@ -29,10 +32,19 @@ class AddUserAction extends Action {
     }
 
     public function executePost() : string{
+
+        $db = DeefyRepository::getInstance();
+
         $_SESSION["user"]["name"] = $_POST["name"];
         $_SESSION["user"]["email"] = $_POST["email"];
         $_SESSION["user"]["age"] = $_POST["age"];
-        $r = "<p>" . $_SESSION["user"]["name"] . " " . $_SESSION["user"]["email"] . " " . $_SESSION["user"]["age"] . "</p>";
+        $r = "
+        <p>
+        Account created<br />
+        Name : " . $_POST["name"] . "<br/>
+        Email : " . $_POST["email"] . "<br />
+        Age : " . $_POST["age"] . "
+        </p>";
         return $r;
     }
 

@@ -40,7 +40,10 @@ class AddPodcastTrackAction extends Action {
     }
 
     public function executePost() : string{
+
         $r = "";
+        $db = DeefyRepository::getInstance();
+
         if (isset($_SESSION["playlists"][$_POST['pname']])) {
             $track = new PodcastTrack($_POST['name'], $_POST['author']);
             $playlist = $_SESSION["playlists"][$_POST['pname']];

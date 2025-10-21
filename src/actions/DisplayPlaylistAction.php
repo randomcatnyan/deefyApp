@@ -3,6 +3,7 @@ namespace iutnc\deefy\actions;
 require_once 'vendor/autoload.php';
 
 use iutnc\deefy\repository\DeefyRepository;
+use iutnc\deefy\render\AudioListRenderer;
 
 class DisplayPlaylistAction extends Action {
 
@@ -34,8 +35,8 @@ class DisplayPlaylistAction extends Action {
         } else {
             $r = $r . "<p>Saved playlists :</p>";
             $all_playlists = $db->getAllPlaylists();
-            foreach ( $all_playlists as $l){
-                $r = $r . $this->render_line($l);
+            foreach ( $all_playlists as $row){
+                $r = $r . $this->render_line($row);
             }
         }
 
