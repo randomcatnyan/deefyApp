@@ -13,8 +13,24 @@ abstract class Action {
         $this->http_method = $_SERVER['REQUEST_METHOD'];
         $this->hostname = $_SERVER['HTTP_HOST'];
         $this->script_name = $_SERVER['SCRIPT_NAME'];
+
     }
 
-    abstract public function execute() : string;
+    public function __invoke() {
+        $r = "please send a GET or POST request";
+        switch($this->http_method) {
+            case "GET":
+                $r = $this->executeGet();
+                break;
+            case "POST":
+                $r = $this->executePost();
+                break;
+        }
+        return $r;
+    }
+
+    abstract public function executeGet() : string;
+
+    abstract public function executePost() : string;
 
 }

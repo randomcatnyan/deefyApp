@@ -37,7 +37,7 @@ class Dispatcher {
             default:
                 $q = new DefaultAction();
         }
-        $this->renderPage($q->execute());
+        $this->renderPage($q());
     }
 
     public function renderPage(string $html): void{

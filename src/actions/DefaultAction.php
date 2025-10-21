@@ -4,7 +4,7 @@ require_once 'vendor/autoload.php';
 
 class DefaultAction extends Action {
 
-    public function execute() : string{
+    public function executeGet() : string{
         return "
         <p>Welcome !
             <ul>
@@ -15,5 +15,7 @@ class DefaultAction extends Action {
         </p>
         ";
     }
+
+    public function executePost() : string{}
 
 }
