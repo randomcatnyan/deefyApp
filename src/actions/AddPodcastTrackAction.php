@@ -31,6 +31,9 @@ class AddPodcastTrackAction extends Action {
             <input type='file' name='track_file' />
             </label>
 
+            <br />
+            <br />
+
             <input type='submit' value='Send'/>
         </form>
         ";
@@ -39,11 +42,11 @@ class AddPodcastTrackAction extends Action {
     public function executePost() : string{
         $r = "";
         if (isset($_SESSION["playlists"][$_POST['pname']])) {
-            $t = new PodcastTrack($_POST['name'], $_POST['author']);
-            $p = $_SESSION["playlists"][$_POST['pname']];
-            $p->addTracks($t);
-            $pr = new AudioListRenderer($p);
-            $r = "<p>" . $pr->render() . "</p><a href='./?action=add-track'>Add another track</a>";
+            $track = new PodcastTrack($_POST['name'], $_POST['author']);
+            $playlist = $_SESSION["playlists"][$_POST['pname']];
+            $playlist->addTrack( $track );
+            $playlistRenderer = new AudioListRenderer( $playlist );
+            $r = "<p>" . $playlistRenderer->render() . "</p><a href='./?action=add-track'>Add another track</a>";
         } else {
             $r = "<p>The playlist doesn't exist !</p><a href='./?action=add-track'>Get back</a>";
         }

@@ -26,30 +26,29 @@ class DisplayPlaylistAction extends Action {
         $db = DeefyRepository::getInstance();
 
         if (isset($_GET["id"])) {
-            $p = $db->findPlaylistById($_GET["id"]);
-            if ($p != null) {
-                $r = $r . $this->render_line($p);
+            $playlist = $db->findPlaylistById($_GET["id"]);
+            if ($playlist != null) {
+                $r = $r . $this->render_line($playlist);
             }
             $r = $r . "<a href='./?display-playlist'><p>All playlists</p></a>";
         } else {
-            $r = $r . "<p>Saved playlists :</p><p>";
+            $r = $r . "<p>Saved playlists :</p>";
             $all_playlists = $db->getAllPlaylists();
             foreach ( $all_playlists as $l){
                 $r = $r . $this->render_line($l);
             }
-            $r = $r . "</p>";
         }
 
         return $r;
     }
 
-    private function render_line($l){
-        $r="";
-        foreach ($l as $e){
+    private function render_line($line){
+        $r="<p>";
+        foreach ($line as $e){
             $r = $r . $e . " ";
         }
         $r = $r . "<br />";
-        return $r;
+        return $r . "</p>";
     }
 
     public function executePost() : string{

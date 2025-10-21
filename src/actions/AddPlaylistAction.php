@@ -20,10 +20,10 @@ class AddPlaylistAction extends Action {
     }
 
     public function executePost() : string{
-        $p = new Playlist($_POST['name']);
-        $_SESSION["playlists"][$_POST['name']] = $p;
-        $pr = new AudioListRenderer($p);
-        $r = "<p>" . $pr->render() . "</p><a href='?action=add-track'><p>Ajouter une piste</p></a>";
+        $playlist = new Playlist($_POST['name']);
+        $_SESSION["playlists"][$_POST['name']] = $playlist;
+        $playlistRenderer = new AudioListRenderer($playlist);
+        $r = "<p>" . $playlistRenderer->render() . "</p><a href='?action=add-track'><p>Ajouter une piste</p></a>";
         return $r;
     }
 

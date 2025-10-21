@@ -20,7 +20,6 @@ class Dispatcher {
     }
 
     public function run(): void{
-        $q = null;
         switch($this->action) {
             case "display-playlist":
                 $q = new DisplayPlaylistAction();
