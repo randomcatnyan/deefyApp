@@ -7,45 +7,46 @@ use iutnc\deefy\render\AudioListRenderer;
 
 class AddPodcastTrackAction extends Action {
 
-    public function execute() : string{
+    public function executeGet() : string{
+        return "
+        <form method='post' action='?action=add-track'>
 
-        $r="";
+            <label>
+            <p>Playlist's name :</p>
+            <input type='text' name='pname' placeholder='cool playlist' />
+            </label>
 
-        if (isset($_POST['name']) and isset($_SESSION["playlists"][$_POST['pname']])) {
+            <label>
+            <p>Track's name :</p>
+            <input type='text' name='name' placeholder='cool track' />
+            </label>
+
+            <label>
+            <p>Track's author :</p>
+            <input type='text' name='author' placeholder='cool dude' />
+            </label>
+
+            <label>
+            <p>Track's file :</p>
+            <input type='file' name='track_file' />
+            </label>
+
+            <input type='submit' value='Send'/>
+        </form>
+        ";
+    }
+
+    public function executePost() : string{
+        $r = "";
+        if (isset($_SESSION["playlists"][$_POST['pname']])) {
             $t = new PodcastTrack($_POST['name'], $_POST['author']);
             $p = $_SESSION["playlists"][$_POST['pname']];
             $p->addTracks($t);
             $pr = new AudioListRenderer($p);
-            $r = "<p>" . $pr->render() . "</p><a href='?action=add-track'>Ajouter encore une piste</a>";
+            $r = "<p>" . $pr->render() . "</p><a href='./?action=add-track'>Add another track</a>";
         } else {
-            $r = "
-            <form method='post' action='?action=add-track'>
-
-                <label>
-                <p>Playlist's name :</p>
-                <input type='text' name='pname' placeholder='cool playlist' />
-                </label>
-
-                <label>
-                <p>Track's name :</p>
-                <input type='text' name='name' placeholder='cool track' />
-                </label>
-
-                <label>
-                <p>Track's author :</p>
-                <input type='text' name='author' placeholder='cool dude' />
-                </label>
-
-                <label>
-                <p>Track's file :</p>
-                <input type='file' name='track_file' />
-                </label>
-
-                <input type='submit' value='Send'/>
-            </form>
-            ";
+            $r = "<p>The playlist doesn't exist !</p><a href='./?action=add-track'>Get back</a>";
         }
-
         return $r;
     }
 

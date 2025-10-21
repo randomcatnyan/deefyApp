@@ -6,7 +6,7 @@ use iutnc\deefy\repository\DeefyRepository;
 
 class DisplayPlaylistAction extends Action {
 
-    public function execute() : string{
+    public function executeGet() : string{
 
         $r = "
         <search>
@@ -42,6 +42,8 @@ class DisplayPlaylistAction extends Action {
 
         return $r;
     }
+
+    public function executePost() : string{}
 
     private function render_line($l){
         $r="";
