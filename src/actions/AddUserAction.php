@@ -2,6 +2,8 @@
 namespace iutnc\deefy\actions;
 require_once 'vendor/autoload.php';
 
+use iutnc\deefy\repository\DeefyRepository;
+
 class AddUserAction extends Action {
 
     public function executeGet() : string{

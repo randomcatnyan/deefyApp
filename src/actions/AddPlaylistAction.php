@@ -4,6 +4,7 @@ require_once 'vendor/autoload.php';
 
 use iutnc\deefy\entity\Playlist;
 use iutnc\deefy\render\AudioListRenderer;
+use iutnc\deefy\repository\DeefyRepository;
 
 class AddPlaylistAction extends Action {
 

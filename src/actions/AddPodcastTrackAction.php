@@ -4,6 +4,7 @@ require_once 'vendor/autoload.php';
 
 use iutnc\deefy\entity\PodcastTrack;
 use iutnc\deefy\render\AudioListRenderer;
+use iutnc\deefy\repository\DeefyRepository;
 
 class AddPodcastTrackAction extends Action {
 
@@ -12,7 +13,7 @@ class AddPodcastTrackAction extends Action {
         <form method='post' action='?action=add-track'>
 
             <label>
-            <p>Playlist's name :</p>
+            <p>Name of the playlist to add the track to :</p>
             <input type='text' name='pname' placeholder='cool playlist' />
             </label>
 
