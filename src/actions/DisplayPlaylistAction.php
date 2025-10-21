@@ -43,8 +43,6 @@ class DisplayPlaylistAction extends Action {
         return $r;
     }
 
-    public function executePost() : string{}
-
     private function render_line($l){
         $r="";
         foreach ($l as $e){
@@ -52,6 +50,11 @@ class DisplayPlaylistAction extends Action {
         }
         $r = $r . "<br />";
         return $r;
+    }
+
+    public function executePost() : string{
+        return "";
+        //cette action n'est pas supposee modifier des donnees donc rien ici ...
     }
 
 }

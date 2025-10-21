@@ -16,6 +16,8 @@ class DefaultAction extends Action {
         ";
     }
 
-    public function executePost() : string{}
+    public function executePost() : string{
+        return "";
+    }
 
 }
