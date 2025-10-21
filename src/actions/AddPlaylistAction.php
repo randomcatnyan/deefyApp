@@ -15,7 +15,7 @@ class AddPlaylistAction extends Action {
             $p = new Playlist($_POST['name']);
             $_SESSION["playlists"][$_POST['name']] = $p;
             $pr = new AudioListRenderer($p);
-            $r = "<p>" . $pr->render() . "</p><a href='?action=add-track'>Ajouter une piste</a>";
+            $r = "<p>" . $pr->render() . "</p><a href='?action=add-track'><p>Ajouter une piste</p></a>";
         } else {
             $r = "
             <form method='post' action='?action=add-playlist'>

@@ -30,12 +30,14 @@ class DeefyRepository {
         self::$config = [ 'dsn'=> $conf['driver'] . ":host=" . $conf['host'] . ";dbname=" . $conf['database'],'user'=> $conf['username'],'pass'=> $conf['password'] ];
     }
 
-    public function findPlaylistById(int $id): Playlist {
+    public function findPlaylistById(int $id): ?Playlist {
         $query = "SELECT * FROM playlist WHERE id=$id";
         $query = $this->pdo->prepare($query);
-        $result->execute();
+        $result = $query->execute();
         $result = $query->fetch();
-        $r = new Playlist($query["nom"]);
+        if (isset($result["nom"])) {
+            $r = new Playlist($result["nom"]);
+        } else $r = null;
         return $r;
     }
 

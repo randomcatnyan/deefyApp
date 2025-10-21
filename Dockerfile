@@ -7,4 +7,4 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-ENV TMPDIR="/root/src/audio/"
+#ENV TMPDIR="/root/src/audio/"
