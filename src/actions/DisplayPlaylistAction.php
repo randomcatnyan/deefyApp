@@ -11,17 +11,20 @@ class DisplayPlaylistAction extends Action {
 
         $r = "
         <search>
-            <form method='get' action='?action=display-playlist'>
+        <form method='get' action='./index.php'>
+
+                <input type='hidden' name='action' value='display-playlist' />
 
                 <label>
                     <p>Search playlist :</p>
                     <input type='search' name='id' />
                 </label>
 
-                <input type='submit' formaction='?action=display-playlist' value='Send'/>
+                <input type='submit' value='Send'/>
 
-            </form>
+        </form>
         </search>
+        <br />
         ";
 
         $db = DeefyRepository::getInstance();
@@ -29,9 +32,10 @@ class DisplayPlaylistAction extends Action {
         if (isset($_GET["id"])) {
             $playlist = $db->findPlaylistById($_GET["id"]);
             if ($playlist != null) {
-                $r = $r . $this->render_line($playlist);
+                $playlistRenderer = new AudioListRenderer($playlist);
+                $r = $r . $playlistRenderer->render();
             }
-            $r = $r . "<a href='./?display-playlist'><p>All playlists</p></a>";
+            $r = $r . "<a href='./?action=display-playlist'><p>All playlists</p></a>";
         } else {
             $r = $r . "<p>Saved playlists :</p>";
             $all_playlists = $db->getAllPlaylists();
