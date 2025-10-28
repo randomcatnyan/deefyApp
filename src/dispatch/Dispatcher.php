@@ -7,6 +7,7 @@ use iutnc\deefy\actions\AddPodcastTrackAction;
 use iutnc\deefy\actions\DefaultAction;
 use iutnc\deefy\actions\DisplayPlaylistAction;
 use iutnc\deefy\actions\AddUserAction;
+use iutnc\deefy\actions\SigninAction;
 
 
 class Dispatcher {
@@ -33,6 +34,9 @@ class Dispatcher {
             case "add-user":
                 $actionRender = new AddUserAction();
                 break;
+            case "signin":
+                $actionRender = new SigninAction();
+                break;
             default:
                 $actionRender = new DefaultAction();
         }
@@ -55,8 +59,9 @@ class Dispatcher {
                 <div>
                     <p>
                         <a href='../../index.php'>Home</a>
-                        <a href='../../index.php?action=add-user'>Inscription</a>
-                        <a href='../../index.php?action=add-playlist'>New playlist</a>
+                        |
+                        <a href='../../index.php?action=add-user'>Register</a>
+                        <a href='../../index.php?action=signin'>Login</a>
                     </p>
                 </div>
                 " . $html . "

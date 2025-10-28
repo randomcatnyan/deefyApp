@@ -8,9 +8,9 @@ class DefaultAction extends Action {
         return "
         <p>Welcome !
             <ul>
-                <li><a href='http://localhost:8080?action=display-playlist' >show playlists</a></li>
-                <li><a href='http://localhost:8080?action=add-playlist' >add playlist</a></li>
-                <li><a href='http://localhost:8080?action=add-track' >add track</a></li>
+                <li><a href='http://localhost:8080?action=display-playlist' >Show playlists</a></li>
+                <li><a href='http://localhost:8080?action=add-playlist' >New playlist</a></li>
+                <li><a href='http://localhost:8080?action=add-track' >New track</a></li>
             </ul>
         </p>
         ";

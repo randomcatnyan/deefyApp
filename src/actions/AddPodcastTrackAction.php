@@ -10,7 +10,7 @@ class AddPodcastTrackAction extends Action {
 
     public function executeGet() : string{
         return "
-        <form method='post' action='?action=add-track'>
+        <form method='post' action='?action=add-track' enctype ='multipart/form-data'>
 
             <label>
             <p>Name of the playlist to add the track to :</p>
@@ -50,11 +50,24 @@ class AddPodcastTrackAction extends Action {
         $author_name = filter_var($_POST['author'], FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (isset($_SESSION["playlists"][$playlist_name])) {
-            $track = new PodcastTrack($track_name, $author_name);
             $playlist = $_SESSION["playlists"][$playlist_name];
+
+            //gere le fichier du track
+            if ( ($_FILES['track_file']['type'] === 'audio/mpeg') && substr($_FILES['track_file']['name'],-4) === '.mp3' ) {
+                $dest = dirname(__FILE__, 2) . '/audio/' . uniqid() . '.mp3';
+                if (move_uploaded_file( $_FILES['track_file']['tmp_name'], $dest )) {
+                    $r = $r . "<p>Succesfully uploaded file !</p>";
+                } else {
+                    $r = $r . "<p>Warning : file not correctly uploaded</p>";
+                }
+            } else {
+                $r = $r . "<p>Warning : file upload failed</p>";
+            }
+
+            $track = new PodcastTrack($track_name, $author_name);
             $playlist->addTrack( $track );
             $playlistRenderer = new AudioListRenderer( $playlist );
-            $r = "<p>" . $playlistRenderer->render() . "</p><a href='./?action=add-track'>Add another track</a>";
+            $r = $r . "<p>" . $playlistRenderer->render() . "</p><a href='./?action=add-track'>Add another track</a>";
         } else {
             $r = "<p>The playlist doesn't exist !</p><a href='./?action=add-track'>Get back</a>";
         }
@@ -62,19 +75,3 @@ class AddPodcastTrackAction extends Action {
     }
 
 }
-
-/* code du cours 12 pour les fichiers
-$upload_dir = __DIR__ . '/img/';
-$filename = uniqid();
-$tmp = $_FILES['inputfile']['tmp_name'] ;
-if ( ( $_FILES['inputfile']['error'] === UPLOAD_ERR_OK) && ($_FILES['inputfile']['type'] === 'image/png') ) {
-    $dest = $upload_dir.$filename.'.png';
-    if (move_uploaded_file($tmp, $dest )) {
-        print "téléchargement terminé avec succès<br>";
-    } else {
-        print "hum, hum téléchargement non valide<br>";
-    }
-} else {
-    print "echec du téléchargement ou type non autorisé<br>";
-}
-*/
