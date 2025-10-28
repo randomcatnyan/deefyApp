@@ -22,21 +22,21 @@ class Dispatcher {
     public function run(): void{
         switch($this->action) {
             case "display-playlist":
-                $q = new DisplayPlaylistAction();
+                $actionRender = new DisplayPlaylistAction();
                 break;
             case "add-playlist":
-                $q = new AddPlaylistAction();
+                $actionRender = new AddPlaylistAction();
                 break;
             case "add-track":
-                $q = new AddPodcastTrackAction();
+                $actionRender = new AddPodcastTrackAction();
                 break;
             case "add-user":
-                $q = new AddUserAction();
+                $actionRender = new AddUserAction();
                 break;
             default:
-                $q = new DefaultAction();
+                $actionRender = new DefaultAction();
         }
-        $this->renderPage($q());
+        $this->renderPage($actionRender());
     }
 
     public function renderPage(string $html): void{
