@@ -37,6 +37,10 @@ class AddUserAction extends Action {
 
         $db = DeefyRepository::getInstance();
 
+        $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $age = filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT);
+
         $_SESSION["user"]["name"] = $_POST["name"];
         $_SESSION["user"]["email"] = $_POST["email"];
         $_SESSION["user"]["age"] = $_POST["age"];
