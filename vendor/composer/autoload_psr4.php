@@ -6,8 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'iutnc\\deefy\\render\\' => array($baseDir . '/src/render'),
-    'iutnc\\deefy\\entity\\' => array($baseDir . '/src/entity'),
-    'iutnc\\deefy\\actions\\' => array($baseDir . '/src/actions'),
     'iutnc\\deefy\\' => array($baseDir . '/src'),
 );
