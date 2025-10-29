@@ -14,7 +14,7 @@ class AddPodcastTrackAction extends Action {
 
             <label>
             <p>ID of the playlist to add the track to :</p>
-            <input type='text' name='pname' placeholder='cool playlist' />
+            <input type='text' name='pname' placeholder='1' />
             </label>
 
             <label>

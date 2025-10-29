@@ -17,7 +17,7 @@ class DisplayPlaylistAction extends Action {
 
                 <label>
                     <p>Search playlist by id :</p>
-                    <input type='search' name='id' />
+                    <input type='number' name='id' />
                 </label>
 
                 <input type='submit' value='Send'/>

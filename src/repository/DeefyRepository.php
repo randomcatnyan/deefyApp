@@ -74,6 +74,22 @@ class DeefyRepository {
         return $track;
     }
 
-    public function addTrackToPlaylist(AudioTrack $track, Playlist $pl) {}
+    public function addTrackToPlaylist(AudioTrack $track, Playlist $pl) {
+        $id_track = $track->get(id);
+        $id_playlist = $pl->getID();
+        $query = "SELECT * FROM playlist2track WHERE id_pl = $id_playlist AND id_track = $id_track";
+        $query = $this->pdo->prepare($query);
+        $query->execute();
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        if ( $row === null ) {
+            $query = "INSERT INTO playlist2track (id_pl, id_track, no_piste_dans_liste) VALUES ('$id_playlist', '$id_track', 1)";
+            $query = $this->pdo->prepare($query);
+            $query->execute();
+        } else {
+            $query = "UPDATE playlist2track SET no_piste_dans_liste = " . $row["no_piste_dans_liste"] + 1 . " WHERE id_pl = $id_playlist AND id_track = $id_track";
+            $query = $this->pdo->prepare($query);
+            $query->execute();
+        }
+    }
 
 }
