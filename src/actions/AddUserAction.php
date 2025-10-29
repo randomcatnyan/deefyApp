@@ -10,10 +10,6 @@ class AddUserAction extends Action {
         return "
         <form method='post' action='?action=add-user'>
 
-            <label>
-                <p>Name : </p>
-                <input type='text' name='name' placeholder='Jean Lemec' />
-            </label>
 
             <label>
                 <p>Email : </p>
@@ -21,8 +17,8 @@ class AddUserAction extends Action {
             </label>
 
             <label>
-            <p>Age : </p>
-                <input type='number' name='age' min='0' max='200' />
+                <p>Password : </p>
+                <input type='password' name='password' minlength='4' required />
             </label>
 
             <br />
@@ -37,21 +33,17 @@ class AddUserAction extends Action {
 
         $db = DeefyRepository::getInstance();
 
-        $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-        $age = filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT);
+        $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $_SESSION["user"]["name"] = $name;
-        $_SESSION["user"]["email"] = $email;
-        $_SESSION["user"]["age"] = $age;
-        $r = "
+        $to_return = "
         <p>
         Account created<br />
-        Name : " . $name . "<br/>
         Email : " . $email . "<br />
-        Age : " . $age . "
+        Password : " . $password . "
         </p>";
-        return $r;
+
+        return $to_return;
     }
 
 }
