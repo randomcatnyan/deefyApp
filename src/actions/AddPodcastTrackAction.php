@@ -13,7 +13,7 @@ class AddPodcastTrackAction extends Action {
         <form method='post' action='?action=add-track' enctype ='multipart/form-data'>
 
             <label>
-            <p>Name of the playlist to add the track to :</p>
+            <p>ID of the playlist to add the track to :</p>
             <input type='text' name='pname' placeholder='cool playlist' />
             </label>
 

@@ -67,7 +67,7 @@ class DeefyRepository {
     public function saveTrack(AudioTrack $track) {
         $track_title = $track->get(title);
         $track_author = $track->get(author);
-        $query = "INSERT INTO track (titre, auteur_podcast) VALUES ($track_title, $track_author)";
+        $query = "INSERT INTO track (titre, auteur_podcast) VALUES ('$track_title', '$track_author')";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
         $track->setID($this->pdo->lastInsertId());
