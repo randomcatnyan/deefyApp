@@ -49,9 +49,10 @@ class DeefyRepository {
     }
 
     public function saveEmptyPlaylist(Playlist $pl): Playlist {
-        $query = "INSERT INTO playlist (nom) VALUES (:nom)";
+        $playlist_name = $pl->getName();
+        $query = "INSERT INTO playlist (nom) VALUES ('$playlist_name')";
         $stmt = $this->pdo->prepare($query);
-        $stmt->execute(['nom' => $pl->nom]);
+        $stmt->execute();
         $pl->setID($this->pdo->lastInsertId());
         return $pl;
     }

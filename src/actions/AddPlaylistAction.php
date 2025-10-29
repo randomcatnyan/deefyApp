@@ -27,7 +27,7 @@ class AddPlaylistAction extends Action {
         $playlist_name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
 
         $playlist = new Playlist($playlist_name);
-        $_SESSION["playlists"][$playlist_name] = $playlist;
+        $db->saveEmptyPlaylist($playlist);
         $playlistRenderer = new AudioListRenderer($playlist);
         $r = "<p>" . $playlistRenderer->render() . "</p><a href='?action=add-track'><p>Add tracks</p></a>";
         return $r;
