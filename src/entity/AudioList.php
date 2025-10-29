@@ -44,4 +44,8 @@ class AudioList
         $this->id = $id;
     }
 
+    public function getID(): int {
+        return $this->id;
+    }
+
 }

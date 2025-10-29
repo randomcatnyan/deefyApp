@@ -39,8 +39,9 @@ class DisplayPlaylistAction extends Action {
         } else {
             $r = $r . "<p>Saved playlists :</p>";
             $all_playlists = $db->getAllPlaylists();
-            foreach ( $all_playlists as $row){
-                $r = $r . $this->render_line($row);
+            foreach ( $all_playlists as $p){
+                $renderer = new AudioListRenderer($p);
+                $r = $r . "ID : " . $p->getID() . "<br />" . $renderer->render() . "<br />";
             }
         }
 
