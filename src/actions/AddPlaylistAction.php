@@ -29,7 +29,7 @@ class AddPlaylistAction extends Action {
         $playlist = new Playlist($playlist_name);
         $_SESSION["playlists"][$playlist_name] = $playlist;
         $playlistRenderer = new AudioListRenderer($playlist);
-        $r = "<p>" . $playlistRenderer->render() . "</p><a href='?action=add-track'><p>Ajouter une piste</p></a>";
+        $r = "<p>" . $playlistRenderer->render() . "</p><a href='?action=add-track'><p>Add tracks</p></a>";
         return $r;
     }
 
