@@ -14,7 +14,7 @@ class Dispatcher {
 
     protected ?string $action = null;
 
-    public function __construct(){
+    public function __construct() {
 
         $this->action = $_GET['action'] ?? null;
 
@@ -43,7 +43,7 @@ class Dispatcher {
         $this->renderPage($actionRender());
     }
 
-    public function renderPage(string $html): void{
+    public function renderPage(string $html): void {
 
         echo"
         <!DOCTYPE html>

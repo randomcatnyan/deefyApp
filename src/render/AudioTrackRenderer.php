@@ -4,10 +4,9 @@ namespace iutnc\deefy\render;
 
 use iutnc\deefy\InvalidArgumentException;
 
-abstract class AudioTrackRenderer implements RenderInterface
-{
-    public function render(int $selector): string
-    {
+abstract class AudioTrackRenderer implements RenderInterface {
+
+    public function render(int $selector): string {
         return match ($selector) {
             self::COMPACT => $this->compact(),
             self::LONG => $this->long(),
@@ -18,4 +17,5 @@ abstract class AudioTrackRenderer implements RenderInterface
     abstract protected function compact(): string;
 
     abstract protected function long(): string;
+
 }

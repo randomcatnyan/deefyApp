@@ -2,6 +2,5 @@
 
 namespace iutnc\deefy;
 
-class InvalidPropertyNameException extends \Exception
-{
+class InvalidPropertyNameException extends \Exception {
 }

@@ -2,6 +2,5 @@
 
 namespace iutnc\deefy;
 
-class AuthnException extends \Exception
-{
+class AuthnException extends \Exception {
 }

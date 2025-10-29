@@ -60,7 +60,7 @@ class DeefyRepository {
     public function saveTrack(AudioTrack $track) {
         $query = "INSERT INTO track (titre) VALUES (:nom)";
         $stmt = $this->pdo->prepare($query);
-        $stmt->execute(['nom' => $track->nom]);
+        $stmt->execute();
         $track->setID($this->pdo->lastInsertId());
         return $track;
     }
