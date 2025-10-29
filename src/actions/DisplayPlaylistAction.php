@@ -34,27 +34,20 @@ class DisplayPlaylistAction extends Action {
             if ($playlist != null) {
                 $playlistRenderer = new AudioListRenderer($playlist);
                 $r = $r . $playlistRenderer->render();
+            } else {
+                $r = $r . "<p>This playlist doesn't exist !</p>";
             }
             $r = $r . "<a href='./?action=display-playlist'><p>All playlists</p></a>";
         } else {
-            $r = $r . "<p>Saved playlists :</p>";
+            $r = $r . "<p>Saved playlists :<br /><br />[ID] Name<br />";
             $all_playlists = $db->getAllPlaylists();
             foreach ( $all_playlists as $p){
-                $renderer = new AudioListRenderer($p);
-                $r = $r . "ID : " . $p->getID() . "<br />" . $renderer->render() . "<br />";
+                $r = $r . "[" . $p->getID() . "] " . $p->getName() . "<br />";
             }
+            $r = $r . "</p>";
         }
 
         return $r;
-    }
-
-    private function render_line($line){
-        $r="<p>";
-        foreach ($line as $e){
-            $r = $r . $e . " ";
-        }
-        $r = $r . "<br />";
-        return $r . "</p>";
     }
 
     public function executePost() : string{
