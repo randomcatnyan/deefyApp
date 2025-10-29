@@ -19,4 +19,9 @@ class AudioTrack
 
         throw new InvalidPropertyNameException("Unknown property $name");
     }
+
+    public function setID(int $id) {
+        $this->id = $id;
+    }
+
 }

@@ -46,4 +46,9 @@ class AudioList
     {
         return $this->tracks;
     }
+
+    public function setID(int $id) {
+        $this->id = $id;
+    }
+
 }
