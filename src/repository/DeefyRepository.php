@@ -35,11 +35,12 @@ class DeefyRepository {
         $query = "SELECT * FROM playlist WHERE id=$id";
         $query = $this->pdo->prepare($query);
         $result = $query->execute();
-        $result = $query->fetch();
-        if (isset($result["nom"])) {
-            $r = new Playlist($result["nom"]);
-        } else $r = null;
-        return $r;
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if ( $result ) {
+            $to_return = new Playlist($result["nom"]);
+            $to_return->setID($result["id"]);
+        } else $to_return = null;
+        return $to_return;
     }
 
     public function getAllPlaylists() {

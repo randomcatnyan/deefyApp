@@ -14,7 +14,7 @@ class AddPodcastTrackAction extends Action {
 
             <label>
             <p>ID of the playlist to add the track to :</p>
-            <input type='text' name='pname' placeholder='1' />
+            <input type='text' name='pl_id' placeholder='1' />
             </label>
 
             <label>
@@ -45,12 +45,12 @@ class AddPodcastTrackAction extends Action {
         $r = "";
         $db = DeefyRepository::getInstance();
 
-        $playlist_name = filter_var($_POST['pname'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $playlist_id = filter_var($_POST['pl_id'], FILTER_SANITIZE_SPECIAL_CHARS);
         $track_name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
         $author_name = filter_var($_POST['author'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (isset($_SESSION["playlists"][$playlist_name])) {
-            $playlist = $_SESSION["playlists"][$playlist_name];
+        $playlist = $db->findPlaylistById($playlist_id);
+        if ($playlist != null) {
 
             //gere le fichier du track
             if ( ($_FILES['track_file']['type'] === 'audio/mpeg') && substr($_FILES['track_file']['name'],-4) === '.mp3' ) {
@@ -61,10 +61,14 @@ class AddPodcastTrackAction extends Action {
                     $r = $r . "<p>Warning : file not correctly uploaded</p>";
                 }
             } else {
-                $r = $r . "<p>Warning : file upload failed</p>";
+                $r = $r . "<p>Warning : file upload failed, wrong file type</p>";
             }
 
             $track = new PodcastTrack($track_name, $author_name);
+
+            $db->saveTrack($track);
+            $db->addTrackToPlaylist($track, $playlist);
+
             $playlist->addTrack( $track );
             $playlistRenderer = new AudioListRenderer( $playlist );
             $r = $r . "<p>" . $playlistRenderer->render() . "</p><a href='./?action=add-track'>Add another track</a>";
