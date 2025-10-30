@@ -7,4 +7,8 @@ use iutnc\deefy\AuthnException;
 
 class AuthProvider {
 
+    public function signin(string email, string password) {
+
+    }
+
 }

@@ -8,8 +8,8 @@ class AddUserAction extends Action {
 
     public function executeGet() : string{
         return "
+        <h1 style='font-weight:bold; font-size:large'>Signup</h1>
         <form method='post' action='?action=add-user'>
-
 
             <label>
                 <p>Email : </p>
@@ -24,7 +24,7 @@ class AddUserAction extends Action {
             <br />
             <br />
 
-            <input type='submit' value='Send'/>
+            <input type='submit' value='Create account !'/>
         </form>
         ";
     }
