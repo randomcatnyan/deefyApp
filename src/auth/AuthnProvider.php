@@ -7,7 +7,15 @@ use iutnc\deefy\AuthnException;
 
 class AuthProvider {
 
-    public function signin(string email, string password) {
+    public static function signin(string $email, string $password) {
+
+        $db = DeefyRepository::getInstance();
+
+    }
+
+    public static function register(string $email, string $password) {
+
+        $db = DeefyRepository::getInstance();
 
     }
 

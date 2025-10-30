@@ -2,7 +2,7 @@
 namespace iutnc\deefy\actions;
 require_once 'vendor/autoload.php';
 
-use iutnc\deefy\repository\DeefyRepository;
+use iutnc\deefy\auth\AuthProvider;
 
 class SigninAction extends Action {
 

@@ -2,7 +2,7 @@
 namespace iutnc\deefy\actions;
 require_once 'vendor/autoload.php';
 
-use iutnc\deefy\repository\DeefyRepository;
+use iutnc\deefy\auth\AuthProvider;
 
 class AddUserAction extends Action {
 
@@ -18,7 +18,7 @@ class AddUserAction extends Action {
 
             <label>
                 <p>Password : </p>
-                <input type='password' name='password' minlength='4' required />
+                <input type='text' name='password' minlength='4' required />
             </label>
 
             <br />
@@ -30,8 +30,6 @@ class AddUserAction extends Action {
     }
 
     public function executePost() : string{
-
-        $db = DeefyRepository::getInstance();
 
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
