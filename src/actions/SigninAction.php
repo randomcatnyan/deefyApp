@@ -32,15 +32,17 @@ class SigninAction extends Action {
 
     public function executePost() : string{
 
-        $to_return = "<p>Wrong email or password, please try again.</p>" . $this->executeGet();
-
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
 
+        $to_return = "";
         if ( AuthProvider::signin($email, $password) ) {
             $_SESSION["user"] = $email;
             $to_return = "<p>Succesfully signed in !</p>";
+        } else {
+            $to_return = "<p>Wrong email or password, please try again.</p>" . $this->executeGet();
         }
+
         return $to_return;
     }
 

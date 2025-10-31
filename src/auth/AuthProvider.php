@@ -23,6 +23,12 @@ class AuthProvider {
     public static function register(string $email, string $password):bool {
 
         $db = DeefyRepository::getInstance();
+        $user = $db->findUserByEmail($email);
+
+        if( $user === null and ( 10 < strlen($password) ) ){
+        }
+
+        return false;
 
     }
 

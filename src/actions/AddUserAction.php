@@ -18,7 +18,7 @@ class AddUserAction extends Action {
 
             <label>
                 <p>Password : </p>
-                <input type='text' name='password' minlength='4' required />
+                <input type='text' name='password' minlength='10' required />
             </label>
 
             <br />
@@ -34,14 +34,19 @@ class AddUserAction extends Action {
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $to_return = "
-        <p>
-        Account created<br />
-        Email : " . $email . "<br />
-        Password : " . $password . "
-        </p>
-        <a href=?action=signin>Sign into your account</a>
-        ";
+        $to_return = "";
+        if ( AuthProvider::register($email, $password) ) {
+            $to_return = "
+            <p>
+            Account created<br />
+            Email : " . $email . "<br />
+            Password : " . $password . "
+            </p>
+            <a href=?action=signin>Sign into your account</a>
+            ";
+        } else {
+            $to_return = "<p>Cannot create multiple accounts with one email.</p>" . $this->executeGet();
+        }
 
         return $to_return;
     }
