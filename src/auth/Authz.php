@@ -23,9 +23,12 @@ class Authz {
 
     }
 
-    public static function checkPlaylistOwner():bool {
+    //unfinished
+    public static function checkPlaylistOwner(int $playlist_id):bool {
 
         $db = DeefyRepository::getInstance();
+
+        return $this->checkRole(100);
 
     }
 
