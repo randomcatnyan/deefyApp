@@ -22,8 +22,16 @@ class DefaultAction extends Action {
             $to_return = "
             <p>
             Welcome !<br />
-            This is small web app to upload and manage tracks<br />
+            This is small web app to upload and manage audio tracks<br />
             Start by signing into an account<br />
+            <br />
+            <span style='font-size:small'>
+            Note to random internauts :<br />
+            THIS IS NOT A REAL SECURE WEB APP <br />
+            It's mostly been done to learn php and deploying and all<br />
+            Please don't send sensitive infos or your real email
+            <br />
+            </span>
             <br />
             ";
         }
