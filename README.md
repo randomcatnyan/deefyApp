@@ -9,8 +9,8 @@ Instructions pour setup le projet
 
 3. Lancer un navigateur et aller sur l'url `http://localhost:8081/`
 
-4. Dans le menu en haut, aller dans SQL
+4. Dans phpMyAdmin, dans le menu en haut, aller dans SQL
 
-5. Copier coller et executer ce qu'il y a dans le fichier deefy_db.sql
+5. Copier coller ce qu'il y a dans le fichier deefy_db.sql et cliquer sur "Go"
 
 6. Accèder à l'appli via l'url `http://localhost:8080/`
