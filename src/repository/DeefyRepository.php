@@ -4,6 +4,7 @@ namespace iutnc\deefy\repository;
 
 use iutnc\deefy\entity\Playlist;
 use iutnc\deefy\entity\AudioTrack;
+use iutnc\deefy\entity\PodcastTrack;
 
 class DeefyRepository {
 
@@ -44,7 +45,7 @@ class DeefyRepository {
         return $to_return;
     }
 
-    public function saveEmptyPlaylist(Playlist $pl): Playlist {
+    public function saveEmptyPlaylist(Playlist $pl) {
         $playlist_name = $pl->getName();
         $query = "INSERT INTO playlist (nom) VALUES ('$playlist_name')";
         $stmt = $this->pdo->prepare($query);
@@ -77,33 +78,38 @@ class DeefyRepository {
         $query->execute();
     }
 
-    //unfinished
     public function findPlaylistById(int $id): ?Playlist {
-
         $query = "SELECT * FROM playlist WHERE id='$id'";
         $query = $this->pdo->prepare($query);
         $query->execute();
         $result = $query->fetch();
-
         if ( $result ) {
-
             $to_return = new Playlist($result["nom"]);
             $to_return->setID($id);
-
             //on rempli la playlist
             $query = "SELECT * FROM playlist2track WHERE id_pl='$id'";
             $query = $this->pdo->prepare($query);
             $query->execute();
             foreach($query as $row){
+                $id_track = $row["id_track"];
+                $query = "SELECT * FROM track WHERE id='$id_track'";
+                $query = $this->pdo->prepare($query);
+                $query->execute();
+                $track_data = $query->fetch();
+                $track_author = $track_data["auteur_podcast"];
+                if ($track_author == null) {
+                    $track_author = "";
+                }
                 for ($i=0; $i < $row["no_piste_dans_liste"]; $i++) {
-                    //
+                    $track = new PodcastTrack($track_data["titre"], $track_author);
+                    $track->setID($id_track);
+                    $to_return->addTrack( $track );
                 }
             }
 
         } else {
             $to_return = null;
         }
-
         return $to_return;
     }
 
