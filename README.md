@@ -14,3 +14,6 @@ Instructions pour setup le projet
 5. Copier coller ce qu'il y a dans le fichier deefy_db.sql et cliquer sur "Go"
 
 6. Accèder à l'appli via l'url `http://localhost:8080/`
+
+Notes :
+- pour accéder au compte admin de l'appli, l'email admin est admin@mail.com avec le mot de passe admin
