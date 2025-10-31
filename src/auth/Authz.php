@@ -28,7 +28,7 @@ class Authz {
             return false;
         }
 
-        return $this->checkRole(100) or $db->userOwnPlaylist($user["id"] , $playlist_id);
+        return Authz::checkRole(100) or $db->userOwnPlaylist($user["id"] , $playlist_id);
 
     }
 

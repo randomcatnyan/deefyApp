@@ -5,16 +5,23 @@ require_once 'vendor/autoload.php';
 use iutnc\deefy\entity\PodcastTrack;
 use iutnc\deefy\render\AudioListRenderer;
 use iutnc\deefy\repository\DeefyRepository;
+use iutnc\deefy\auth\Authz;
 
 class AddPodcastTrackAction extends Action {
 
     public function executeGet() : string{
+
+        $playlist_id = "";
+        if ( isset($_GET["playlist_id"]) ) {
+            $playlist_id = $_GET["playlist_id"];
+        }
+
         return "
         <form method='post' action='?action=add-track' enctype ='multipart/form-data'>
 
             <label>
             <p>ID of the playlist to add the track to :</p>
-            <input type='text' name='pl_id' placeholder='1' />
+            <input type='number' name='pl_id' value='$playlist_id' />
             </label>
 
             <label>
@@ -50,7 +57,7 @@ class AddPodcastTrackAction extends Action {
         $author_name = filter_var($_POST['author'], FILTER_SANITIZE_SPECIAL_CHARS);
 
         $playlist = $db->findPlaylistById($playlist_id);
-        if ($playlist != null) {
+        if ($playlist != null and Authz::checkPlaylistOwner($playlist_id)) {
 
             //gere le fichier du track
             if ( ($_FILES['track_file']['type'] === 'audio/mpeg') && substr($_FILES['track_file']['name'],-4) === '.mp3' ) {

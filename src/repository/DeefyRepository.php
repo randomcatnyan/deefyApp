@@ -132,7 +132,7 @@ class DeefyRepository {
     }
 
     public function userOwnPlaylist(string $id_user, string $id_playlist):bool {
-        $query = "SELECT * FROM user2playlist WHERE id_user='$id_user' id_pl='$id_playlist'";
+        $query = "SELECT * FROM user2playlist WHERE id_user='$id_user' AND id_pl='$id_playlist'";
         $query = $this->pdo->prepare($query);
         $query->execute();
         $result = $query->fetch();

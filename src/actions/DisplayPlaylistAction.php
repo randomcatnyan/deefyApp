@@ -4,6 +4,7 @@ require_once 'vendor/autoload.php';
 
 use iutnc\deefy\repository\DeefyRepository;
 use iutnc\deefy\render\AudioListRenderer;
+use iutnc\deefy\auth\Authz;
 
 class DisplayPlaylistAction extends Action {
 
@@ -31,7 +32,7 @@ class DisplayPlaylistAction extends Action {
 
         if (isset($_GET["id"])) {
             $playlist = $db->findPlaylistById($_GET["id"]);
-            if ($playlist != null) {
+            if ($playlist != null and Authz::checkPlaylistOwner($_GET["id"])) {
                 $playlistRenderer = new AudioListRenderer($playlist);
                 $r = $r . $playlistRenderer->render();
             } else {
@@ -43,7 +44,9 @@ class DisplayPlaylistAction extends Action {
             $all_playlists = $db->getAllPlaylists();
             foreach ( $all_playlists as $p){
                 $playlist_id = $p->getID();
-                $r = $r . "[<a href='./?action=display-playlist&id=$playlist_id'>$playlist_id</a>] " . $p->getName() . "<br />";
+                if ( Authz::checkPlaylistOwner($playlist_id) ) {
+                    $r = $r . "[<a href='./?action=display-playlist&id=$playlist_id'>$playlist_id</a>] " . $p->getName() . "<br />";
+                }
             }
             $r = $r . "</p>";
         }

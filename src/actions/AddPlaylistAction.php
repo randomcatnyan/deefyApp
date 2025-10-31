@@ -28,8 +28,9 @@ class AddPlaylistAction extends Action {
 
         $playlist = new Playlist($playlist_name);
         $db->saveEmptyPlaylist($playlist);
+        $playlist_id = $playlist->getID();
         $playlistRenderer = new AudioListRenderer($playlist);
-        $r = "<p>" . $playlistRenderer->render() . "</p><a href='?action=add-track'><p>Add tracks</p></a>";
+        $r = "<p>" . $playlistRenderer->render() . "</p><a href='?action=add-track&playlist_id=$playlist_id'><p>Add tracks</p></a>";
         return $r;
     }
 
