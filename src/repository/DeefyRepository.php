@@ -53,6 +53,21 @@ class DeefyRepository {
         $pl->setID($this->pdo->lastInsertId());
     }
 
+    public function addPlaylistToUser(Playlist $pl, string $user){
+        $user = $this->findUserByEmail($user);
+        $id_user = $user["id"];
+        $id_playlist = $pl->getID();
+        $query = "SELECT * FROM user2playlist WHERE id_pl = '$id_playlist' AND id_user = '$id_user'";
+        $query = $this->pdo->prepare($query);
+        $query->execute();
+        $row = $query->fetch();
+        if ( $row == null ) {
+            $query = "INSERT INTO user2playlist (id_user, id_pl) VALUES ('$id_user', '$id_playlist')";
+            $query = $this->pdo->prepare($query);
+            $query->execute();
+        }
+    }
+
     public function saveTrack(AudioTrack $track) {
         $track_title = $track->title;
         $track_author = $track->author;
