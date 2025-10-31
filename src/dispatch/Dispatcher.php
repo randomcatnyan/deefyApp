@@ -11,6 +11,7 @@ use iutnc\deefy\actions\SigninAction;
 use iutnc\deefy\actions\SignoutAction;
 
 use iutnc\deefy\auth\AuthProvider;
+use iutnc\deefy\AuthnException;
 
 
 class Dispatcher {
@@ -57,19 +58,10 @@ class Dispatcher {
         |";
 
         try {
-            // les variables de session semblent
-            // se supprimer seulement une fois que l'output
-            // est fini après un appel à session_destroy(),
-            // donc il faut rajouter ce workaround pour que la barre de
-            // navigation n'affiche pas le pseudo pendant 1 page
-            // une fois déconnecté
-            if( isset($_GET["action"]) and $_GET["action"] == "signout" ) {
-                throw new \Exception();
-            }
             $user = AuthProvider::getSignedInUser();
             $navbar = $navbar . " $user (<a href='../../?action=signout'>Sign out</a>)";
         }
-        catch (\Throwable $e){
+        catch (AuthnException $e){
             $navbar = $navbar . "
             <a href='../../?action=add-user'>Register</a>
             <a href='../../?action=signin'>Login</a>

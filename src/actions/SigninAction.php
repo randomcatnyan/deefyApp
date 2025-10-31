@@ -17,8 +17,8 @@ class SigninAction extends Action {
             </label>
 
             <label>
-            <p>Password : </p>
-            <input type='password' name='password' minlength='4' />
+                <p>Password : </p>
+                <input type='password' name='password' minlength='4' />
             </label>
 
             <br />

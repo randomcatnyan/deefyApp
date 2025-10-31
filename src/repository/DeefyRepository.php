@@ -64,7 +64,7 @@ class DeefyRepository {
     public function addTrackToPlaylist(AudioTrack $track, Playlist $pl) {
         $id_track = $track->id;
         $id_playlist = $pl->getID();
-        $query = "SELECT * FROM playlist2track WHERE id_pl = $id_playlist AND id_track = $id_track";
+        $query = "SELECT * FROM playlist2track WHERE id_pl = '$id_playlist' AND id_track = '$id_track'";
         $query = $this->pdo->prepare($query);
         $query->execute();
         $row = $query->fetch();
@@ -79,7 +79,7 @@ class DeefyRepository {
 
     //unfinished
     public function findPlaylistById(int $id): ?Playlist {
-        $query = "SELECT * FROM playlist WHERE id=$id";
+        $query = "SELECT * FROM playlist WHERE id='$id'";
         $query = $this->pdo->prepare($query);
         $query->execute();
         $result = $query->fetch();
@@ -91,7 +91,7 @@ class DeefyRepository {
     }
 
     public function findUserByEmail(string $email): ?array {
-        $query = "SELECT * FROM User WHERE email=$email";
+        $query = "SELECT * FROM User WHERE email='$email'";
         $query = $this->pdo->prepare($query);
         $query->execute();
         $result = $query->fetch();

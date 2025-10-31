@@ -8,7 +8,7 @@ class SignoutAction extends Action {
 
     public function executeGet() : string{
         if ( isset( $_SESSION["user"] ) ) {
-            session_destroy();
+            session_unset();
         }
         return ( new DefaultAction()() );
     }

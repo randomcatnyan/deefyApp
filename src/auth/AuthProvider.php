@@ -10,8 +10,13 @@ class AuthProvider {
     public static function signin(string $email, string $password):bool {
 
         $db = DeefyRepository::getInstance();
+        $user = $db->findUserByEmail($email);
 
-        return true;
+        if( $user === null ){
+            return false;
+        }
+
+        return password_verify($password, $user["passwd"]);
 
     }
 
