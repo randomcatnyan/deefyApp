@@ -31,10 +31,11 @@ class DisplayPlaylistAction extends Action {
         $db = DeefyRepository::getInstance();
 
         if (isset($_GET["id"])) {
-            $playlist = $db->findPlaylistById($_GET["id"]);
-            if ($playlist != null and Authz::checkPlaylistOwner($_GET["id"])) {
+            $playlist_id = $_GET["id"];
+            $playlist = $db->findPlaylistById($playlist_id);
+            if ($playlist != null and Authz::checkPlaylistOwner($playlist_id)) {
                 $playlistRenderer = new AudioListRenderer($playlist);
-                $r = $r . $playlistRenderer->render();
+                $r = $r . $playlistRenderer->render() . "<a href='?action=add-track&playlist_id=$playlist_id'><p>Add tracks</p></a>";
             } else {
                 $r = $r . "<p>This playlist doesn't exist !</p>";
             }
