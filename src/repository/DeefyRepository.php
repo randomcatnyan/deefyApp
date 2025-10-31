@@ -31,7 +31,7 @@ class DeefyRepository {
         self::$config = [ 'dsn'=> $conf['driver'] . ":host=" . $conf['host'] . ";dbname=" . $conf['database'],'user'=> $conf['username'],'pass'=> $conf['password'] ];
     }
 
-    public function getAllPlaylists() {
+    public function getAllPlaylists(): array {
         $query = "SELECT * FROM playlist ";
         $query = $this->pdo->prepare($query);
         $query->execute();
@@ -50,7 +50,6 @@ class DeefyRepository {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
         $pl->setID($this->pdo->lastInsertId());
-        return $pl;
     }
 
     public function saveTrack(AudioTrack $track) {
@@ -60,7 +59,6 @@ class DeefyRepository {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
         $track->setID($this->pdo->lastInsertId());
-        return $track;
     }
 
     public function addTrackToPlaylist(AudioTrack $track, Playlist $pl) {
@@ -92,11 +90,18 @@ class DeefyRepository {
         return $to_return;
     }
 
-    public function findUserByEmail(string email) {
-
+    public function findUserByEmail(string $email): ?array {
+        $query = "SELECT * FROM User WHERE email=$email";
+        $query = $this->pdo->prepare($query);
+        $query->execute();
+        $result = $query->fetch();
+        if ( $result ) {
+            $to_return = $result;
+        } else $to_return = null;
+        return $to_return;
     }
 
-    public function saveUser(string email, string password) {
+    public function saveUser(string $email, string $password) {
 
     }
 

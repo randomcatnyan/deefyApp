@@ -42,7 +42,8 @@ class DisplayPlaylistAction extends Action {
             $r = $r . "<p>Saved playlists :<br /><br />[ID] Name<br />";
             $all_playlists = $db->getAllPlaylists();
             foreach ( $all_playlists as $p){
-                $r = $r . "[" . $p->getID() . "] " . $p->getName() . "<br />";
+                $playlist_id = $p->getID();
+                $r = $r . "[<a href='./?action=display-playlist&id=$playlist_id'>$playlist_id</a>] " . $p->getName() . "<br />";
             }
             $r = $r . "</p>";
         }
