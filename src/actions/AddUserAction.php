@@ -39,7 +39,9 @@ class AddUserAction extends Action {
         Account created<br />
         Email : " . $email . "<br />
         Password : " . $password . "
-        </p>";
+        </p>
+        <a href=?action=signin>Sign into your account</a>
+        ";
 
         return $to_return;
     }

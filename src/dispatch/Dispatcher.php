@@ -8,6 +8,9 @@ use iutnc\deefy\actions\DefaultAction;
 use iutnc\deefy\actions\DisplayPlaylistAction;
 use iutnc\deefy\actions\AddUserAction;
 use iutnc\deefy\actions\SigninAction;
+use iutnc\deefy\actions\SignoutAction;
+
+use iutnc\deefy\auth\AuthProvider;
 
 
 class Dispatcher {
@@ -37,6 +40,9 @@ class Dispatcher {
             case "signin":
                 $actionRender = new SigninAction();
                 break;
+            case "signout":
+                $actionRender = new SignoutAction();
+                break;
             default:
                 $actionRender = new DefaultAction();
         }
@@ -44,6 +50,33 @@ class Dispatcher {
     }
 
     public function renderPage(string $html): void {
+
+        $navbar = "
+        <p>
+        <a href='../../'>Home</a>
+        |";
+
+        try {
+            // les variables de session semblent
+            // se supprimer seulement une fois que l'output
+            // est fini après un appel à session_destroy(),
+            // donc il faut rajouter ce workaround pour que la barre de
+            // navigation n'affiche pas le pseudo pendant 1 page
+            // une fois déconnecté
+            if( isset($_GET["action"]) and $_GET["action"] == "signout" ) {
+                throw new \Exception();
+            }
+            $user = AuthProvider::getSignedInUser();
+            $navbar = $navbar . "$user (<a href='../../?action=signout'>Sign out</a>)";
+        }
+        catch (\Throwable $e){
+            $navbar = $navbar . "
+            <a href='../../?action=add-user'>Register</a>
+            <a href='../../?action=signin'>Login</a>
+            ";
+        }
+
+        $navbar = $navbar . "</p>";
 
         echo"
         <!DOCTYPE html>
@@ -56,15 +89,12 @@ class Dispatcher {
                 <link rel='icon' href='favicon.png' />
             </head>
             <body>
-                <div>
-                    <p>
-                        <a href='../../index.php'>Home</a>
-                        |
-                        <a href='../../index.php?action=add-user'>Register</a>
-                        <a href='../../index.php?action=signin'>Login</a>
-                    </p>
+                <div id='navbar'>
+                " . $navbar . "
                 </div>
+                <div id='action_render'>
                 " . $html . "
+                </div>
             </body>
         </html>
         ";

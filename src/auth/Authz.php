@@ -3,17 +3,16 @@ namespace iutnc\deefy\auth;
 require_once 'vendor/autoload.php';
 
 use iutnc\deefy\repository\DeefyRepository;
-use iutnc\deefy\AuthnException;
 
-class AuthProvider {
+class Authz {
 
-    public static function signin(string $email, string $password) {
+    public static function checkRole(int role):bool {
 
         $db = DeefyRepository::getInstance();
 
     }
 
-    public static function register(string $email, string $password) {
+    public static function checkPlaylistOwner():bool {
 
         $db = DeefyRepository::getInstance();
 

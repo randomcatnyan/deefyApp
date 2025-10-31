@@ -17,16 +17,16 @@ abstract class Action {
     }
 
     public function __invoke() {
-        $r = "please send a GET or POST request";
+        $to_return = "<p>please send a GET or POST request</p>";
         switch($this->http_method) {
             case "GET":
-                $r = $this->executeGet();
+                $to_return = $this->executeGet();
                 break;
             case "POST":
-                $r = $this->executePost();
+                $to_return = $this->executePost();
                 break;
         }
-        return $r;
+        return $to_return;
     }
 
     abstract public function executeGet() : string;

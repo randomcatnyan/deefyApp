@@ -10,7 +10,3 @@ session_start();
 
 $dispatcher = new Dispatcher();
 $dispatcher->run();
-
-// je n'avais pas le temps de faire du css propre
-// alors il y a des <br /> un peu partout
-// dans le html

@@ -11,7 +11,7 @@ class DisplayPlaylistAction extends Action {
 
         $r = "
         <search>
-        <form method='get' action='./index.php'>
+        <form method='get' action='./'>
 
                 <input type='hidden' name='action' value='display-playlist' />
 

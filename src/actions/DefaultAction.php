@@ -17,7 +17,7 @@ class DefaultAction extends Action {
     }
 
     public function executePost() : string{
-        return "";
+        return $this->executeGet();
     }
 
 }
