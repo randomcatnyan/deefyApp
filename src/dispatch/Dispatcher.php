@@ -57,11 +57,10 @@ class Dispatcher {
         <a href='../../'>Home</a>
         |";
 
-        try {
+        if ( AuthProvider::isLoggedIn() ) {
             $user = AuthProvider::getSignedInUser();
             $navbar = $navbar . " $user (<a href='../../?action=signout'>Sign out</a>)";
-        }
-        catch (AuthnException $e){
+        } else {
             $navbar = $navbar . "
             <a href='../../?action=add-user'>Register</a>
             <a href='../../?action=signin'>Login</a>

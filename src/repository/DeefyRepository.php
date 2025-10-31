@@ -77,17 +77,33 @@ class DeefyRepository {
         $query->execute();
     }
 
-    //unfinished + check user ici
+    //unfinished
     public function findPlaylistById(int $id): ?Playlist {
+
         $query = "SELECT * FROM playlist WHERE id='$id'";
         $query = $this->pdo->prepare($query);
         $query->execute();
         $result = $query->fetch();
+
         if ( $result ) {
+
             $to_return = new Playlist($result["nom"]);
-            $to_return->setID($result["id"]);
-            //ici remplir playlist
-        } else $to_return = null;
+            $to_return->setID($id);
+
+            //on rempli la playlist
+            $query = "SELECT * FROM playlist2track WHERE id_pl='$id'";
+            $query = $this->pdo->prepare($query);
+            $query->execute();
+            foreach($query as $row){
+                for ($i=0; $i < $row["no_piste_dans_liste"]; $i++) {
+                    //
+                }
+            }
+
+        } else {
+            $to_return = null;
+        }
+
         return $to_return;
     }
 

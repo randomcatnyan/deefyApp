@@ -2,18 +2,34 @@
 namespace iutnc\deefy\actions;
 require_once 'vendor/autoload.php';
 
+use iutnc\deefy\auth\AuthProvider;
+
 class DefaultAction extends Action {
 
     public function executeGet() : string{
-        return "
-        <p>Welcome !
-            <ul>
+        $to_return = "";
+
+        if ( AuthProvider::isLoggedIn() ) {
+            $to_return = "
+            <p>You can :
+                <ul>
                 <li><a href='http://localhost:8080?action=display-playlist' >Show playlists</a></li>
-                <li><a href='http://localhost:8080?action=add-playlist' >New playlist</a></li>
-                <li><a href='http://localhost:8080?action=add-track' >New track</a></li>
-            </ul>
-        </p>
-        ";
+                <li><a href='http://localhost:8080?action=add-playlist' >Add a playlist</a></li>
+                <li><a href='http://localhost:8080?action=add-track' >Add a track</a></li>
+                </ul>
+            ";
+        } else {
+            $to_return = "
+            <p>
+            Welcome !<br />
+            This is small web app to upload and manage tracks<br />
+            Start by signing into an account<br />
+            <br />
+            ";
+        }
+        $to_return = $to_return . "<a href='https://github.com/randomcatnyan/deefyApp' style='font-size:small' >Source code</a>
+        </p>";
+        return $to_return;
     }
 
     public function executePost() : string{

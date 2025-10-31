@@ -41,4 +41,8 @@ class AuthProvider {
         throw new AuthnException("No user signed in");
     }
 
+    public static function isLoggedIn():bool {
+        return isset( $_SESSION["user"] );
+    }
+
 }
