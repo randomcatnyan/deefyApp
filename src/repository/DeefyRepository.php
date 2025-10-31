@@ -86,6 +86,7 @@ class DeefyRepository {
         if ( $result ) {
             $to_return = new Playlist($result["nom"]);
             $to_return->setID($result["id"]);
+            //ici remplir playlist
         } else $to_return = null;
         return $to_return;
     }
@@ -102,7 +103,10 @@ class DeefyRepository {
     }
 
     public function saveUser(string $email, string $password) {
-
+        $pwd = password_hash($password, PASSWORD_BCRYPT);
+        $query = "INSERT INTO User (email, passwd, role) VALUES ('$email', '$pwd', 1)";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
     }
 
 }
