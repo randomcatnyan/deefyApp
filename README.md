@@ -1,6 +1,8 @@
 # deefyApp
 Timothée ONIMUS
 
+Petite web app en php pour uploader et gérer des pistes audio
+
 Instructions pour setup le projet
 
 1. Télécharger le projet en local et lancer un terminal à sa racine
