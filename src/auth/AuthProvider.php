@@ -25,7 +25,9 @@ class AuthProvider {
         $db = DeefyRepository::getInstance();
         $user = $db->findUserByEmail($email);
 
-        if( $user === null and ( 10 < strlen($password) ) ){
+        if( $user === null and ( 10 <= strlen($password) ) ){
+            $db->saveUser($email, $password);
+            return true;
         }
 
         return false;
