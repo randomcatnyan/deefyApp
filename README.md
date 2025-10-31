@@ -17,3 +17,4 @@ Instructions pour setup le projet
 
 Notes :
 - pour accéder au compte admin de l'appli, l'email admin est `admin@mail.com` avec le mot de passe `admin`
+- la seule fonctionnalité qui ne fonctionne pas bien est l'upload de fichiers
