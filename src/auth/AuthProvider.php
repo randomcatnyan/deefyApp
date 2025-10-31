@@ -12,7 +12,7 @@ class AuthProvider {
         $db = DeefyRepository::getInstance();
         $user = $db->findUserByEmail($email);
 
-        if( $user === null ){
+        if( $user == null ){
             return false;
         }
 

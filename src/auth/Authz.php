@@ -6,9 +6,20 @@ use iutnc\deefy\repository\DeefyRepository;
 
 class Authz {
 
-    public static function checkRole(int role):bool {
+    public static function checkRole(int $role):bool {
+
+        if ( !isset( $_SESSION["user"] ) ) {
+            return false;
+        }
 
         $db = DeefyRepository::getInstance();
+        $user = $db->findUserByEmail($_SESSION["user"]);
+
+        if ( $user == null ) {
+            return false;
+        }
+
+        return ( $user["role"] == $role );
 
     }
 
