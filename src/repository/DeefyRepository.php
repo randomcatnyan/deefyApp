@@ -77,7 +77,7 @@ class DeefyRepository {
         $query->execute();
     }
 
-    //unfinished
+    //unfinished + check user ici
     public function findPlaylistById(int $id): ?Playlist {
         $query = "SELECT * FROM playlist WHERE id='$id'";
         $query = $this->pdo->prepare($query);
@@ -107,6 +107,14 @@ class DeefyRepository {
         $query = "INSERT INTO User (email, passwd, role) VALUES ('$email', '$pwd', 1)";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
+    }
+
+    public function userOwnPlaylist(string $id_user, string $id_playlist):bool {
+        $query = "SELECT * FROM user2playlist WHERE id_user='$id_user' id_pl='$id_playlist'";
+        $query = $this->pdo->prepare($query);
+        $query->execute();
+        $result = $query->fetch();
+        return ( $result != null );
     }
 
 }

@@ -8,27 +8,27 @@ class Authz {
 
     public static function checkRole(int $role):bool {
 
-        if ( !isset( $_SESSION["user"] ) ) {
-            return false;
+        if ( isset( $_SESSION["user"] ) ) {
+            $db = DeefyRepository::getInstance();
+            $user = $db->findUserByEmail($_SESSION["user"]);
+            if ( $user != null ) {
+                return ( $user["role"] == $role );
+            }
         }
-
-        $db = DeefyRepository::getInstance();
-        $user = $db->findUserByEmail($_SESSION["user"]);
-
-        if ( $user == null ) {
-            return false;
-        }
-
-        return ( $user["role"] == $role );
+        return false;
 
     }
 
-    //unfinished
     public static function checkPlaylistOwner(int $playlist_id):bool {
 
         $db = DeefyRepository::getInstance();
 
-        return $this->checkRole(100);
+        $user = $db->findUserByEmail($_SESSION["user"]);
+        if ( $user == null ) {
+            return false;
+        }
+
+        return $this->checkRole(100) or $db->userOwnPlaylist($user["id"] , $playlist_id);
 
     }
 
