@@ -67,7 +67,7 @@ class Dispatcher {
                 throw new \Exception();
             }
             $user = AuthProvider::getSignedInUser();
-            $navbar = $navbar . "$user (<a href='../../?action=signout'>Sign out</a>)";
+            $navbar = $navbar . " $user (<a href='../../?action=signout'>Sign out</a>)";
         }
         catch (\Throwable $e){
             $navbar = $navbar . "
