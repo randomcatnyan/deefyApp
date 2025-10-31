@@ -51,8 +51,8 @@ class DisplayPlaylistAction extends Action {
     }
 
     public function executePost() : string{
-        return "";
-        //cette action n'est pas supposee modifier des donnees donc rien ici ...
+        return executeGet();
+        //cette action n'est pas supposee modifier des donnees donc meme chose qu'en GET ...
     }
 
 }
