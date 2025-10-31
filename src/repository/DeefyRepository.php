@@ -31,19 +31,6 @@ class DeefyRepository {
         self::$config = [ 'dsn'=> $conf['driver'] . ":host=" . $conf['host'] . ";dbname=" . $conf['database'],'user'=> $conf['username'],'pass'=> $conf['password'] ];
     }
 
-    //unfinished
-    public function findPlaylistById(int $id): ?Playlist {
-        $query = "SELECT * FROM playlist WHERE id=$id";
-        $query = $this->pdo->prepare($query);
-        $query->execute();
-        $result = $query->fetch();
-        if ( $result ) {
-            $to_return = new Playlist($result["nom"]);
-            $to_return->setID($result["id"]);
-        } else $to_return = null;
-        return $to_return;
-    }
-
     public function getAllPlaylists() {
         $query = "SELECT * FROM playlist ";
         $query = $this->pdo->prepare($query);
@@ -90,6 +77,27 @@ class DeefyRepository {
         }
         $query = $this->pdo->prepare($query);
         $query->execute();
+    }
+
+    //unfinished
+    public function findPlaylistById(int $id): ?Playlist {
+        $query = "SELECT * FROM playlist WHERE id=$id";
+        $query = $this->pdo->prepare($query);
+        $query->execute();
+        $result = $query->fetch();
+        if ( $result ) {
+            $to_return = new Playlist($result["nom"]);
+            $to_return->setID($result["id"]);
+        } else $to_return = null;
+        return $to_return;
+    }
+
+    public function findUserByEmail(string email) {
+
+    }
+
+    public function saveUser(string email, string password) {
+
     }
 
 }
