@@ -13,9 +13,9 @@ class DefaultAction extends Action {
             $to_return = "
             <p>You can :
                 <ul>
-                <li><a href='http://localhost:8080?action=display-playlist' >Show playlists</a></li>
-                <li><a href='http://localhost:8080?action=add-playlist' >Add a playlist</a></li>
-                <li><a href='http://localhost:8080?action=add-track' >Add a track</a></li>
+                <li><a href='./?action=display-playlist' >Show playlists</a></li>
+                <li><a href='./?action=add-playlist' >Add a playlist</a></li>
+                <li><a href='./?action=add-track' >Add a track</a></li>
                 </ul>
             ";
         } else {
