@@ -10,7 +10,9 @@ class SignoutAction extends Action {
         if ( isset( $_SESSION["user"] ) ) {
             session_unset();
         }
-        return ( new DefaultAction()() );
+        $to_render = new DefaultAction();
+        $to_return = $to_render();
+        return $to_return;
     }
 
     public function executePost() : string{
