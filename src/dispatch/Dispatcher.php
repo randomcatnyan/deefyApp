@@ -54,16 +54,16 @@ class Dispatcher {
 
         $navbar = "
         <p>
-        <a href='../../'>Home</a>
+        <a href='./'>Home</a>
         |";
 
         if ( AuthProvider::isLoggedIn() ) {
             $user = AuthProvider::getSignedInUser();
-            $navbar = $navbar . " $user (<a href='../../?action=signout'>Sign out</a>)";
+            $navbar = $navbar . " $user (<a href='./?action=signout'>Sign out</a>)";
         } else {
             $navbar = $navbar . "
-            <a href='../../?action=add-user'>Register</a>
-            <a href='../../?action=signin'>Login</a>
+            <a href='./?action=add-user'>Register</a>
+            <a href='./?action=signin'>Login</a>
             ";
         }
 
